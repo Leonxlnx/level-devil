@@ -1,0 +1,23 @@
+{
+  "name": "level-devil",
+  "version": "1.0.0",
+  "description": "A browser-based rage platformer inspired by **Level Devil** — minimalist look, perfectly planned traps, and obvious ragebait.",
+  "main": "game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leonxlnx/level-devil.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leonxlnx/level-devil/issues"
+  },
+  "homepage": "https://github.com/Leonxlnx/level-devil#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
