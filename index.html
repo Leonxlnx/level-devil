@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 <title>LEVEL DEVIL — not a troll game</title>
 <link rel="stylesheet" href="style.css" />
 </head>
@@ -47,6 +47,26 @@
     <p class="end-sub">...this time.</p>
     <p class="end-stats">you died <span id="end-deaths">0</span> times. <span id="end-roast"></span></p>
     <button id="end-menu-btn">BACK TO MENU</button>
+  </div>
+</div>
+
+<!-- TOUCH CONTROLS (mobile only) -->
+<div id="touch-controls" class="hidden">
+  <div class="tc-group tc-move">
+    <button id="tc-left" class="tc-btn" aria-label="Move left">
+      <svg viewBox="0 0 24 24" width="30" height="30"><path d="M15 5 L7 12 L15 19" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button id="tc-right" class="tc-btn" aria-label="Move right">
+      <svg viewBox="0 0 24 24" width="30" height="30"><path d="M9 5 L17 12 L9 19" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="tc-group tc-actions">
+    <button id="tc-restart" class="tc-btn tc-small" aria-label="Restart level">
+      <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 12 a8 8 0 1 1 2.4 5.7 M4 12 V6 M4 12 H10" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button id="tc-jump" class="tc-btn tc-jump" aria-label="Jump">
+      <svg viewBox="0 0 24 24" width="34" height="34"><path d="M5 15 L12 7 L19 15" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
   </div>
 </div>
 <script type="importmap">

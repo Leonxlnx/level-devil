@@ -26,12 +26,15 @@ Then open `http://localhost:8080`.
 | R | Restart level |
 | M | Mute |
 
+On mobile, on-screen touch controls appear automatically: move arrows on the left, jump and restart on the right.
+
 ## Features
 
 - 10 handcrafted levels with collapse floors, pop spikes, falling blocks, crushers, fleeing doors, homing floor gaps, fake doors, and inverted controls
 - Minimalist paper-white aesthetic with blood stains, screen shake, and particle juice
 - Procedural Web Audio sound effects
 - Death counter + level unlock progress (saved in `localStorage`)
+- Mobile support with clean on-screen touch controls
 
 ## Tech
 

@@ -86,9 +86,14 @@ addEventListener("keydown", (e) => {
   AudioFX.init();
 });
 addEventListener("keyup", (e) => (keys[e.code] = false));
-const heldLeft = () => keys["ArrowLeft"] || keys["KeyA"];
-const heldRight = () => keys["ArrowRight"] || keys["KeyD"];
-const heldJump = () => keys["Space"] || keys["ArrowUp"] || keys["KeyW"];
+
+// touch input (mobile)
+const touch = { left: false, right: false, jump: false };
+const IS_TOUCH = matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+
+const heldLeft = () => keys["ArrowLeft"] || keys["KeyA"] || touch.left;
+const heldRight = () => keys["ArrowRight"] || keys["KeyD"] || touch.right;
+const heldJump = () => keys["Space"] || keys["ArrowUp"] || keys["KeyW"] || touch.jump;
 
 // ---------------------------------------------------------------- particles
 const particles = [];
@@ -1215,6 +1220,33 @@ function updateDeathHud() {
 const menuEl = document.getElementById("menu");
 const hudEl = document.getElementById("hud");
 const endEl = document.getElementById("end-screen");
+const touchEl = document.getElementById("touch-controls");
+
+// ---------------------------------------------------------------- touch controls
+function bindHold(id, on, off) {
+  const el = document.getElementById(id);
+  const press = (e) => { e.preventDefault(); el.classList.add("held"); AudioFX.init(); on(); };
+  const release = (e) => { e.preventDefault(); el.classList.remove("held"); off(); };
+  el.addEventListener("pointerdown", press);
+  el.addEventListener("pointerup", release);
+  el.addEventListener("pointercancel", release);
+  el.addEventListener("pointerleave", release);
+  el.addEventListener("contextmenu", (e) => e.preventDefault());
+}
+bindHold("tc-left", () => (touch.left = true), () => (touch.left = false));
+bindHold("tc-right", () => (touch.right = true), () => (touch.right = false));
+bindHold("tc-jump",
+  () => { touch.jump = true; jumpBuffered = 0.12; },
+  () => (touch.jump = false)
+);
+document.getElementById("tc-restart").addEventListener("pointerdown", (e) => {
+  e.preventDefault();
+  if (Game.state === "play") Game.restartLevel(true);
+});
+
+function setTouchControlsVisible(v) {
+  touchEl.classList.toggle("hidden", !(v && IS_TOUCH));
+}
 
 function buildLevelGrid() {
   const grid = document.getElementById("level-grid");
@@ -1237,6 +1269,7 @@ function startGame(i) {
   menuEl.classList.add("hidden");
   endEl.classList.add("hidden");
   hudEl.classList.remove("hidden");
+  setTouchControlsVisible(true);
   Game.loadLevel(i);
   Game.state = "play";
   Game.wipe = 1;
@@ -1249,11 +1282,13 @@ function showMenu() {
   menuEl.classList.remove("hidden");
   endEl.classList.add("hidden");
   hudEl.classList.add("hidden");
+  setTouchControlsVisible(false);
   Game.state = "menu";
 }
 
 function showEnd() {
   hudEl.classList.add("hidden");
+  setTouchControlsVisible(false);
   endEl.classList.remove("hidden");
   Game.state = "end";
   document.getElementById("end-deaths").textContent = Game.deaths;
@@ -1267,15 +1302,19 @@ document.getElementById("end-menu-btn").addEventListener("click", showMenu);
 
 // ---------------------------------------------------------------- layout / overlays sizing
 function fit() {
-  const scale = Math.min(innerWidth / (W + 40), innerHeight / (H + 40));
+  // reserve space at the bottom for touch controls on mobile
+  const reserve = IS_TOUCH ? Math.min(130, innerHeight * 0.22) : 0;
+  const pad = IS_TOUCH ? 12 : 40;
+  const scale = Math.min(innerWidth / (W + pad), (innerHeight - reserve) / (H + pad));
   const cw = Math.floor(W * scale), ch = Math.floor(H * scale);
   cv.style.width = cw + "px";
   cv.style.height = ch + "px";
+  cv.style.marginBottom = reserve + "px";
   for (const el of [menuEl, hudEl, endEl]) {
     el.style.width = cw + "px";
     el.style.height = el === hudEl ? "auto" : ch + "px";
     el.style.left = `calc(50% - ${cw / 2}px)`;
-    el.style.top = `calc(50% - ${ch / 2}px)`;
+    el.style.top = `calc(50% - ${ch / 2 + reserve / 2}px)`;
   }
 }
 addEventListener("resize", fit);
