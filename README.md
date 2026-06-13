@@ -1,8 +1,8 @@
-# Level Devil
+# FableDevil
 
-A browser-based rage platformer inspired by **Level Devil** — minimalist look, perfectly planned traps, and obvious ragebait.
+A clean little browser rage-platformer — minimalist look, perfectly planned traps, dark/light themes, and obvious ragebait. **FableDevil** is the prettier, meaner sequel to the classic "is the floor lying to me?" formula.
 
-![Level Devil](https://img.shields.io/badge/play-in%20browser-8a3ffc)
+![Play in browser](https://img.shields.io/badge/play-in%20browser-ffb24d)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## Play
@@ -25,23 +25,27 @@ Then open `http://localhost:8080`.
 | ↑ / W / Space | Jump |
 | R | Restart level |
 | M | Mute |
+| T | Toggle dark/light theme |
+| F | Toggle fullscreen |
 
-On mobile, on-screen touch controls appear automatically: move arrows on the left, jump and restart on the right.
+On mobile the game goes fullscreen with floating, translucent touch controls: move arrows on the left, jump + restart on the right. Theme, sound, and fullscreen toggles live in the top-right corner.
 
 ## Features
 
-- 10 handcrafted levels with collapse floors, pop spikes, falling blocks, crushers, fleeing doors, homing floor gaps, fake doors, and inverted controls
-- Minimalist paper-white aesthetic with blood stains, screen shake, and particle juice
+- **30 handcrafted levels** with a smooth difficulty curve and a fresh mechanic introduced every few stages
+- **13 trap types:** collapsing floors, pop spikes, falling blocks, crushers, crumbling platforms, homing floor gaps, fake doors, inverted controls, plus newer concepts — **moving platforms, conveyor belts, springs, spinning saws, telegraphed lasers, teleporters, buttons + gates, blinking platforms, pendulums, and turrets**
+- **Dark & light themes** with a one-tap toggle (remembers your choice, respects system preference)
+- **Mobile-first fullscreen** layout that scales to any screen with safe-area-aware floating controls
+- Clean, juicy presentation: easing, screen shake, particles, blood stains, a circular scene-wipe transition, and a non-purple amber palette
 - Procedural Web Audio sound effects
 - Death counter + level unlock progress (saved in `localStorage`)
-- Mobile support with clean on-screen touch controls
 
 ## Tech
 
-Pure HTML, CSS, and JavaScript — no build step, no dependencies.
+Pure HTML, CSS, and JavaScript on a 2D `<canvas>` — no build step, no framework. The only dependency is `@vercel/analytics`, loaded over an import map. Theming is a single runtime palette object on the canvas side plus CSS `data-theme` variables for the DOM.
 
 ## License
 
 MIT — see [LICENSE](LICENSE).
 
-This is a fan recreation for learning and fun. Not affiliated with the original Level Devil game.
+This is a fan recreation for learning and fun. Not affiliated with any original game.
