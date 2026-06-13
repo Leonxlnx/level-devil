@@ -1,7 +1,7 @@
 {
-  "name": "level-devil",
-  "version": "1.0.0",
-  "description": "A browser-based rage platformer inspired by **Level Devil** — minimalist look, perfectly planned traps, and obvious ragebait.",
+  "name": "fabledevil",
+  "version": "2.0.0",
+  "description": "FableDevil — a clean little browser rage-platformer with 30 levels, dark/light themes, and obvious ragebait.",
   "main": "game.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

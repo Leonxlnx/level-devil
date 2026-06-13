@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-<title>LEVEL DEVIL — not a troll game</title>
+<meta name="theme-color" content="#14161d" />
+<title>FABLEDEVIL — a clean little rage game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<!-- TOP CONTROL BAR (always visible) -->
+<div id="topbar">
+  <button id="btn-theme" class="ic-btn" aria-label="Toggle theme"><span id="ic-theme"></span></button>
+  <button id="btn-mute" class="ic-btn" aria-label="Toggle sound"><span id="ic-mute"></span></button>
+  <button id="btn-fs" class="ic-btn" aria-label="Toggle fullscreen"><span id="ic-fs"></span></button>
+</div>
+
 <div id="stage">
   <canvas id="game" width="960" height="540"></canvas>
 
@@ -18,35 +29,40 @@
     </div>
     <div class="hud-right">
       <span class="skull">&#9760;</span><span id="hud-deaths">0</span>
-      <span class="hint">R&nbsp;restart&nbsp;&middot;&nbsp;M&nbsp;mute</span>
+      <span class="hint">R&nbsp;restart</span>
     </div>
   </div>
 
   <!-- MENU -->
   <div id="menu">
-    <div class="devil-face">
-      <div class="horn left"></div>
-      <div class="horn right"></div>
-      <div class="face">
-        <div class="eye l"></div>
-        <div class="eye r"></div>
-        <div class="grin"></div>
+    <div class="menu-inner">
+      <div class="devil-face">
+        <div class="horn left"></div>
+        <div class="horn right"></div>
+        <div class="face">
+          <div class="eye l"></div>
+          <div class="eye r"></div>
+          <div class="grin"></div>
+        </div>
       </div>
+      <h1 class="title"><span class="t-fable">FABLE</span><span class="t-devil">DEVIL</span></h1>
+      <p class="subtitle">a clean little rage game. promise. <span class="wink">;)</span></p>
+      <button id="play-btn">PLAY</button>
+      <div class="grid-label">levels</div>
+      <div id="level-grid"></div>
+      <p class="menu-deaths">total deaths: <span id="menu-deaths">0</span></p>
+      <p class="controls-hint">&larr; &rarr; / A D move &nbsp;&middot;&nbsp; &uarr; / W / SPACE jump &nbsp;&middot;&nbsp; T theme</p>
     </div>
-    <h1 class="title"><span>L</span><span>E</span><span>V</span><span>E</span><span>L</span>&nbsp;<span>D</span><span>E</span><span>V</span><span>I</span><span>L</span></h1>
-    <p class="subtitle">not a troll game. promise. <span class="wink">;)</span></p>
-    <button id="play-btn">PLAY</button>
-    <div id="level-grid"></div>
-    <p class="menu-deaths">total deaths: <span id="menu-deaths">0</span></p>
-    <p class="controls-hint">&larr; &rarr; / A D to move &nbsp;&middot;&nbsp; &uarr; / W / SPACE to jump</p>
   </div>
 
   <!-- END SCREEN -->
   <div id="end-screen" class="hidden">
-    <h1 class="end-title">YOU BEAT<br>THE DEVIL</h1>
-    <p class="end-sub">...this time.</p>
-    <p class="end-stats">you died <span id="end-deaths">0</span> times. <span id="end-roast"></span></p>
-    <button id="end-menu-btn">BACK TO MENU</button>
+    <div class="menu-inner">
+      <h1 class="end-title">YOU BEAT<br>THE DEVIL</h1>
+      <p class="end-sub">...this time.</p>
+      <p class="end-stats">you died <span id="end-deaths">0</span> times. <span id="end-roast"></span></p>
+      <button id="end-menu-btn">BACK TO MENU</button>
+    </div>
   </div>
 </div>
 
@@ -69,6 +85,10 @@
     </button>
   </div>
 </div>
+
+<!-- portrait rotate hint -->
+<div id="rotate-hint">↻ rotate your phone for a bigger view</div>
+
 <script type="importmap">
 {
   "imports": {
